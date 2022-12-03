@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@bon-mono-repos/common": ["libs/common/src/index.ts"],
+      "@bon-mono-repos/common": ["libs/common/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

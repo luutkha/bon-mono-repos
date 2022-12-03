@@ -22,8 +22,13 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   padding: 10px 20px 10px 20px;
-  border: 1px solid #f0e9ff;
+  border: 2px solid #f0e9ff;
   border-radius: 10px;
+  &:hover {
+    border: 2px solid #6924fc;
+
+    cursor: pointer;
+  }
   `;
 export const Title = styled.div`
   font-size: 15px;

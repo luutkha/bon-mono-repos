@@ -13,5 +13,6 @@ export const CustomButtonContainer = styled.button`
   &:hover {
     background-color: #6924fc;
     color: white;
+    cursor: pointer;
   }
 `;
