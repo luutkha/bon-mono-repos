@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 
 type Props = {
     children: JSX.Element;
+    customOpenButton?: JSX.Element;
 }
 const customStyles = {
     content: {
@@ -17,8 +18,7 @@ const customStyles = {
 
 // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 // Modal.setAppElement('#yourAppElement');
-const CustomModal = ({ children }: Props) => {
-    let subtitle: any;
+const CustomModal = ({ children, customOpenButton = <div>click to open</div> }: Props) => {
     const [modalIsOpen, setIsOpen] = React.useState(false);
 
     function openModal() {
@@ -36,7 +36,9 @@ const CustomModal = ({ children }: Props) => {
 
     return (
         <div>
-            <button onClick={openModal}>Open Modal</button>
+            <div onClick={openModal} >
+                {customOpenButton}
+            </div>
             <Modal
                 isOpen={modalIsOpen}
                 onAfterOpen={afterOpenModal}

@@ -7,7 +7,7 @@ type Props = {
 
 const FlexOneRow = ({ children, customs }: Props) => {
     return (
-        <Container style={{...customs}}>
+        <Container style={{ ...customs }}>
             {children}
         </Container>
     )
@@ -20,4 +20,5 @@ display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: row;
+flex-wrap: wrap;
 `;

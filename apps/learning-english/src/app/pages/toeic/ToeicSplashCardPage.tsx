@@ -14,7 +14,7 @@ export const ToeicSplashCardPage = () => {
   const data = toeicData as Word[];
   useEffect(() => {
     dispatch(setListWords(data.filter((c) => c.eng && c.spelling && c.vie)));
-    if (listWords.length > 1) dispatch(setCurrentListSplash(6));
+    if (listWords.length > 1) dispatch(setCurrentListSplash(9999));
   }, [data, dispatch, listWords.length]);
 
   return (

@@ -6,11 +6,10 @@ import { useSplashCardStore } from '../../../redux/store';
 import { SplashCard } from '../../common/card/flash-card/SplashCard';
 import CustomModal from '../../modal/CustomModal';
 import { Container, Item } from './SplashCardDashbroadLayout.styles';
-type Props = {}
 
-const SplashCardDashbroadLayout = (props: Props) => {
+const SplashCardDashbroadLayout = () => {
     const dispatch = useAppDispatch();
-    const { analysis, listWords, currentSplashCardDashBoard, currentListSplash, listSplashCardMatched, targetSplashCardNeedToLearn } = useSplashCardStore();
+    const { analysis, currentSplashCardDashBoard, listSplashCardMatched, targetSplashCardNeedToLearn } = useSplashCardStore();
     const { bestStreak, streak, wrong } = analysis;
 
     const handleCardClick = (id: number) => {
@@ -37,6 +36,7 @@ const SplashCardDashbroadLayout = (props: Props) => {
         <div>
             {customModalOnPage}
             <FlexOneRow customs={{ gap: '20px' }}>
+                <StatusView title='Mục tiêu' status={targetSplashCardNeedToLearn.toString()} />
                 <StatusView title='Đúng' status={listSplashCardMatched.length.toString()} />
                 <StatusView title='Sai' status={wrong.toString()} />
                 <StatusView title='Liên tiếp' status={streak.toString()} />

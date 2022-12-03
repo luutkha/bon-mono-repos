@@ -37,6 +37,8 @@ export const splashCardSlice = createSlice({
   reducers: {
     setCurrentListSplash: (state, action: PayloadAction<number>) => {
       state.targetSplashCardNeedToLearn = action.payload;
+      if (action.payload > state.listWords.length)
+        state.targetSplashCardNeedToLearn = state.listWords.length;
       const listWords = [...state.listWords];
       const nItems = _.sampleSize(listWords, action.payload);
       state.currentListSplash = nItems;
@@ -278,7 +280,8 @@ export const splashCardSlice = createSlice({
             state.listSplashCardMatched.push(currentCard.data);
             const { bestStreak, streak } = state.analysis;
             state.analysis.streak = streak + 1;
-            if (streak > bestStreak) state.analysis.bestStreak = bestStreak + 1;
+            if (streak >= bestStreak)
+              state.analysis.bestStreak = bestStreak + 1;
           } else {
             console.log('unmatch check');
             state.currentSplashCardDashBoard[state.currentEnIndex].isSelected =
