@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { store } from "../src/app/redux/store";
 import App from "./App";
-import PageLayout from "./app/components/layout/page-layout/PageLayout";
+import PageLayout from "./app/components/templates/page-layout/PageLayout";
 import { BasicSplashCardPage } from "./app/pages/basic/BasicSplashCardPage";
 import { ToeicSplashCardPage } from "./app/pages/toeic/ToeicSplashCardPage";
 import "./index.css";

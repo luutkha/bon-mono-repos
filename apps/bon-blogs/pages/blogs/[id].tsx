@@ -1,3 +1,4 @@
+import { CommonComponents } from 'libs/common-components/src'
 import { GetServerSidePropsContext, InferGetStaticPropsType } from 'next'
 import Image from 'next/image'
 import { useRouter } from 'next/router'

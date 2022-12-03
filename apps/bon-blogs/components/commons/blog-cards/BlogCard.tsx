@@ -37,12 +37,12 @@ const BlogCard: React.FC<BlogCardProps> = ({ title, type, description, imageUrl 
     }
     const titleElement = fixTitle(title);
 
-    let randomUrlIndex = Math.floor((Math.random() * 9));
+    const randomUrlIndex = Math.floor((Math.random() * 9));
     imageUrl = listImage[randomUrlIndex]
 
-    const handleCardClicked = () => {
-        
-    }
+    // const handleCardClicked = () => {
+
+    // }
     return (
         <div className={classNames(wrapper)}>
 

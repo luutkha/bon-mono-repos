@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import SplashCardDashbroadLayout from "../../components/layout/splash-card-dashbroad-Layout/SplashCardDashbroadLayout";
+import SplashCardDashbroadLayout from "../../components/templates/splash-card-dashbroad-Layout/SplashCardDashbroadLayout";
 import toeicData from "../../data/toeic.json";
 import { useAppDispatch } from "../../redux/hooks";
 import {
@@ -10,7 +10,7 @@ import { useSplashCardStore } from "../../redux/store";
 import { Word } from "../../types/common.type";
 export const ToeicSplashCardPage = () => {
   const dispatch = useAppDispatch();
-  const { listWords, currentListSplash, listSplashCardMatched, targetSplashCardNeedToLearn } = useSplashCardStore();
+  const { listWords } = useSplashCardStore();
   const data = toeicData as Word[];
   useEffect(() => {
     dispatch(setListWords(data.filter((c) => c.eng && c.spelling && c.vie)));
@@ -18,17 +18,6 @@ export const ToeicSplashCardPage = () => {
   }, [data, dispatch, listWords.length]);
 
   return (
-    <div>
-      <div>
-        <div>
-          {currentListSplash.length}
-        </div>
-        <div>
-          {listSplashCardMatched.length}
-        </div>
-        {targetSplashCardNeedToLearn}
-      </div>
-      <SplashCardDashbroadLayout />
-    </div>
+    <SplashCardDashbroadLayout />
   );
 };

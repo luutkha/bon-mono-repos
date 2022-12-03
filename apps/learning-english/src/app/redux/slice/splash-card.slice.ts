@@ -1,12 +1,15 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import _ from "lodash";
-import { SplashCardProps } from "../../components/common/card/flash-card/interface";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import _ from 'lodash';
+import {
+  SplashCardAnalysis,
+  SplashCardProps,
+} from '../../components/common/card/flash-card/interface';
 import {
   DF_CURRENT_SPLASH_CARD_DB_VALUE,
   MAX_WORD_DASHBOARD,
-} from "../../constants/common";
-import { Word } from "../../types/common.type";
-import { splashCardAction } from "../action/splash-card.action";
+} from '../../constants/common';
+import { Word } from '../../types/common.type';
+import { splashCardAction } from '../action/splash-card.action';
 type SplashCardSliceProps = {
   targetSplashCardNeedToLearn: number;
   currentListSplash: Word[];
@@ -15,6 +18,7 @@ type SplashCardSliceProps = {
   currentEnIndex: number | undefined;
   currrentViIndex: number | undefined;
   listSplashCardMatched: Word[];
+  analysis: SplashCardAnalysis;
 };
 const initialState: SplashCardSliceProps = {
   targetSplashCardNeedToLearn: 0,
@@ -24,10 +28,11 @@ const initialState: SplashCardSliceProps = {
   currentEnIndex: undefined,
   currrentViIndex: undefined,
   listSplashCardMatched: [],
+  analysis: { bestStreak: 0, streak: 0, wrong: 0 },
 };
 
 export const splashCardSlice = createSlice({
-  name: "SplashCardSlice",
+  name: 'SplashCardSlice',
   initialState,
   reducers: {
     setCurrentListSplash: (state, action: PayloadAction<number>) => {
@@ -40,33 +45,33 @@ export const splashCardSlice = createSlice({
         ..._.sampleSize(state.currentListSplash, MAX_WORD_DASHBOARD),
       ];
       console.log(randomDataForDashBroad);
-      var dashbroadIndexListEng = Array.from(Array(MAX_WORD_DASHBOARD).keys());
-      var dashbroadIndexListVie = Array.from(Array(MAX_WORD_DASHBOARD).keys());
+      let dashbroadIndexListEng = Array.from(Array(MAX_WORD_DASHBOARD).keys());
+      let dashbroadIndexListVie = Array.from(Array(MAX_WORD_DASHBOARD).keys());
 
       for (let index = 0; index < MAX_WORD_DASHBOARD; index++) {
         const word = randomDataForDashBroad[index];
         const get_random = (list: number[]) => {
           return list[Math.floor(Math.random() * list.length)];
         };
-        let randomIndexEng = get_random(dashbroadIndexListEng);
-        let randomIndexVie = get_random(dashbroadIndexListVie);
+        const randomIndexEng = get_random(dashbroadIndexListEng);
+        const randomIndexVie = get_random(dashbroadIndexListVie);
 
         console.log(randomIndexEng);
         if (randomIndexEng !== undefined && randomIndexVie !== undefined) {
-          console.log("check");
-          word.eng = word.eng.split("(")[0];
+          console.log('check');
+          word.eng = word.eng.split('(')[0];
           state.currentSplashCardDashBoard[randomIndexEng * 2] = {
             data: word,
             isSelected: false,
             otherSideId: randomIndexVie * 2 + 1,
-            type: "En",
+            type: 'En',
             isMatched: undefined,
           };
           state.currentSplashCardDashBoard[randomIndexVie * 2 + 1] = {
             data: word,
             isSelected: false,
             otherSideId: randomIndexEng * 2,
-            type: "Vi",
+            type: 'Vi',
             isMatched: undefined,
           };
           dashbroadIndexListEng = [...dashbroadIndexListEng].filter(
@@ -76,7 +81,7 @@ export const splashCardSlice = createSlice({
             (e) => e !== randomIndexVie
           );
         } else {
-          console.log("có undefine");
+          console.log('có undefine');
           console.log(randomIndexVie);
           console.log(randomIndexEng);
         }
@@ -115,11 +120,11 @@ export const splashCardSlice = createSlice({
           },
           0
         );
-        console.log("total matched card: ", totalMatchedCard);
+        console.log('total matched card: ', totalMatchedCard);
         if (totalMatchedCard / 2 >= 3) {
           const listCard = [...state.currentSplashCardDashBoard];
-          var dashbroadIndexListEng: number[] = [];
-          var dashbroadIndexListVie: number[] = [];
+          let dashbroadIndexListEng: number[] = [];
+          let dashbroadIndexListVie: number[] = [];
 
           listCard.forEach((c, index) => {
             if (c.isMatched === true && index % 2 === 0) {
@@ -151,8 +156,8 @@ export const splashCardSlice = createSlice({
             const get_random = (list: number[]) => {
               return list[Math.floor(Math.random() * list.length)];
             };
-            let randomIndexEng = get_random(dashbroadIndexListEng);
-            let randomIndexVie = get_random(dashbroadIndexListVie);
+            const randomIndexEng = get_random(dashbroadIndexListEng);
+            const randomIndexVie = get_random(dashbroadIndexListVie);
 
             console.log(randomIndexEng);
             if (
@@ -160,21 +165,21 @@ export const splashCardSlice = createSlice({
               randomIndexVie !== undefined &&
               word
             ) {
-              console.log("check");
+              console.log('check');
               console.log(word);
-              word.eng = word.eng.split("(")[0];
+              word.eng = word.eng.split('(')[0];
               state.currentSplashCardDashBoard[randomIndexEng] = {
                 data: word,
                 isSelected: false,
                 otherSideId: randomIndexVie,
-                type: "En",
+                type: 'En',
                 isMatched: undefined,
               };
               state.currentSplashCardDashBoard[randomIndexVie] = {
                 data: word,
                 isSelected: false,
                 otherSideId: randomIndexEng,
-                type: "Vi",
+                type: 'Vi',
                 isMatched: undefined,
               };
               dashbroadIndexListEng = [...dashbroadIndexListEng].filter(
@@ -184,7 +189,7 @@ export const splashCardSlice = createSlice({
                 (e) => e !== randomIndexVie
               );
             } else {
-              console.log("có undefine");
+              console.log('có undefine');
               console.log(randomIndexVie);
               console.log(randomIndexEng);
             }
@@ -201,32 +206,32 @@ export const splashCardSlice = createSlice({
       addNewCard();
 
       const setCurrentIndex = (
-        type: "En" | "Vi" | "All",
+        type: 'En' | 'Vi' | 'All',
         value: undefined | number
       ) => {
         switch (type) {
-          case "All":
+          case 'All':
             state.currentEnIndex = value;
             state.currrentViIndex = value;
             break;
-          case "Vi":
+          case 'Vi':
             state.currrentViIndex = value;
             break;
-          case "En":
+          case 'En':
             state.currentEnIndex = value;
             break;
         }
       };
-      const clearOldCurrentIdIfSameType = (type: "En" | "Vi") => {
+      const clearOldCurrentIdIfSameType = (type: 'En' | 'Vi') => {
         switch (type) {
-          case "En":
+          case 'En':
             if (state.currentEnIndex !== undefined) {
               state.currentSplashCardDashBoard[
                 state.currentEnIndex
               ].isSelected = false;
             }
             break;
-          case "Vi":
+          case 'Vi':
             if (state.currrentViIndex !== undefined) {
               state.currentSplashCardDashBoard[
                 state.currrentViIndex
@@ -246,14 +251,14 @@ export const splashCardSlice = createSlice({
         state.currentSplashCardDashBoard[id] = currentCard;
         setCurrentIndex(currentCard.type, id);
 
-        const checkOtherIdMatched = (type: "En" | "Vi", id: number) => {
+        const checkOtherIdMatched = (type: 'En' | 'Vi', id: number) => {
           const otherSideId = currentCard.otherSideId;
           switch (type) {
-            case "Vi":
+            case 'Vi':
               if (state.currentEnIndex === otherSideId) return true;
               return false;
 
-            case "En":
+            case 'En':
               if (state.currrentViIndex === otherSideId) return true;
               return false;
           }
@@ -264,15 +269,18 @@ export const splashCardSlice = createSlice({
           state.currrentViIndex !== undefined
         ) {
           if (checkOtherIdMatched(currentCard.type, id)) {
-            console.log("match");
+            console.log('match');
             state.currentSplashCardDashBoard[
               currentCard.otherSideId
             ].isMatched = true;
             state.currentSplashCardDashBoard[id].isMatched = true;
-            setCurrentIndex("All", undefined);
+            setCurrentIndex('All', undefined);
             state.listSplashCardMatched.push(currentCard.data);
+            const { bestStreak, streak } = state.analysis;
+            state.analysis.streak = streak + 1;
+            if (streak > bestStreak) state.analysis.bestStreak = bestStreak + 1;
           } else {
-            console.log("unmatch check");
+            console.log('unmatch check');
             state.currentSplashCardDashBoard[state.currentEnIndex].isSelected =
               false;
             state.currentSplashCardDashBoard[state.currrentViIndex].isSelected =
@@ -281,7 +289,9 @@ export const splashCardSlice = createSlice({
               false;
             state.currentSplashCardDashBoard[state.currrentViIndex].isMatched =
               false;
-            setCurrentIndex("All", undefined);
+            setCurrentIndex('All', undefined);
+            state.analysis.streak = 0;
+            state.analysis.wrong += 1;
           }
         } else {
           //just do nothing
