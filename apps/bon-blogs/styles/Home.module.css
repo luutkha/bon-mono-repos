@@ -1,0 +1,13 @@
+.pageContainer {
+  /* display: flex;
+  width: 100%; */
+}
+
+.blogListContainerClass {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  z-index: 1 !important;
+}

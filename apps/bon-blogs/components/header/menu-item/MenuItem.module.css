@@ -1,0 +1,57 @@
+.container {
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 100px;
+  border-radius: 100px;
+  background-color: transparent;
+  cursor: pointer;
+  color: #d0dcf3;
+  position: relative;
+  animation: zoom-in-zoom-out-hover-off 0.75s ease forwards;
+}
+
+.container:hover {
+  background-color: #f0e9ff;
+  color: #6924fc;
+  animation: zoom-in-zoom-out 0.75s ease forwards;
+}
+
+.active {
+  background-color: #f0e9ff;
+  color: #6924fc;
+}
+
+.textStyles {
+  font-family: "Utm Avo bold";
+  font-weight: bold;
+  font-size: 10px;
+}
+.activeStyles {
+  width: 50%;
+  height: 2px;
+  border-radius: 5px;
+  background-color: #6924fc;
+  position: absolute;
+  bottom: -1px;
+  opacity: 0.5;
+}
+
+@keyframes zoom-in-zoom-out {
+  0% {
+    transform: scale(1, 1);
+  }
+  100% {
+    transform: scale(1.1, 1.1);
+  }
+}
+@keyframes zoom-in-zoom-out-hover-off {
+  0% {
+    transform: scale(1.1, 1.1);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}

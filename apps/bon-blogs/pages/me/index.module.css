@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+}
+
+.leftContentClass {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.titleClass {
+  font-family: "Utm Avo Bold";
+  font-size: calc(8vw);
+}
+
+.rightContentClass {
+  flex: 2;
+  background-color: white;
+}
+
+.imageClass{
+  min-width: 300px;
+}
+
+

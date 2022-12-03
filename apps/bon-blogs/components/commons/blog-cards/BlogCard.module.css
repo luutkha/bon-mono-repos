@@ -1,0 +1,94 @@
+.wrapper {
+  height: 200px;
+  cursor: pointer;
+  animation: zoom-in-zoom-out-hover-off 0.5s ease forwards;
+  background-color: transparent;
+  position: relative;
+}
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 200px;
+  position: relative;
+}
+.wrapper:hover {
+  animation: zoom-in-zoom-out 0.5s ease forwards;
+  z-index: 99 !important;
+}
+
+.typeClass {
+  font-family: "Utm avo Bold";
+  color: var(--secondColor);
+  font-size: 12px;
+}
+.imageClass {
+  border-radius: 10px 10px 0px 0px;
+  height: 150px;
+  width: 100%;
+  background-size: cover;
+  background-position: top;
+}
+
+.contentContainer {
+  display: flex;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+  flex-direction: column;
+  padding: 10px !important;
+  white-space: pre-line;
+  text-align: start;
+  width: calc(100%);
+  margin: 0;
+}
+
+.wrapper:hover .contentContainer {
+  color: white !important;
+  background-color: white;
+  z-index: 99 !important;
+}
+.wrapper:hover .typeClass {
+  font-family: "Utm avo Bold";
+  color: var(--primaryColor);
+  font-size: 12px;
+}
+
+.titleClass {
+  font-family: "Utm Avo Bold";
+  font-size: 13px;
+  color: black;
+}
+
+.descriptionClass {
+  margin: 0;
+  font-family: "Utm Avo";
+  font-size: 10px;
+  display: none;
+  background-color: white;
+  padding: 10px !important;
+  transition: 0.5s ease;
+}
+
+.wrapper:hover .descriptionClass {
+  z-index: 99;
+  display: block;
+  background-color: black;
+  color: white;
+}
+@keyframes zoom-in-zoom-out {
+  0% {
+    transform: scale(1, 1);
+  }
+  100% {
+    transform: scale(1.1, 1.1);
+  }
+}
+@keyframes zoom-in-zoom-out-hover-off {
+  0% {
+    transform: scale(1.1, 1.1);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}

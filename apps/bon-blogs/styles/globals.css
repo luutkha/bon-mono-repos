@@ -10,13 +10,13 @@ body {
 }
 @font-face {
   font-family: 'UTM avo';
-  src: url('../src/app/assets/fonts/UtmAvo.ttf');
+  src: url('../public/assets/fonts/UtmAvo.ttf');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'UTM avo bold';
-  src: url('../src/app/assets/fonts/UTMAvoBold.ttf');
+  src: url('../public/assets/fonts/UTMAvoBold.ttf');
   font-weight: bold;
   font-style: normal;
 }
@@ -24,7 +24,6 @@ body {
 ::-webkit-scrollbar {
   width: 0;
 }
-
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: var(--primaryColor);
@@ -35,4 +34,12 @@ body {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: transparent;
+}
+
+/* remove underline of link */
+a:hover,
+a:visited,
+a:link,
+a:active {
+  text-decoration: none;
 }

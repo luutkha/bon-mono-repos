@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 4vw;
+  background-color: white;
+  border-radius: 10px;
+  gap: 10px;
+}
+
+
